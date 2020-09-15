@@ -9,12 +9,12 @@ sessionsRouter.post('/', async (req, res) => {
 
     const sessionUser = new SessionUserService();
 
-    const { user } = await sessionUser.execute({
+    const { user, token } = await sessionUser.execute({
       email,
       password,
     });
 
-    return res.json({ user });
+    return res.json({ user, token });
   } catch (err) {
     return res.status(400).json({ error: err.message });
   }

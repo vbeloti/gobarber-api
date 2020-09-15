@@ -1,5 +1,6 @@
 import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
+import { sign } from 'jsonwebtoken';
 
 import User from '../models/User';
 import deletePassword, { IUserWithoutPassword } from './utils/deletePassword';
@@ -11,6 +12,7 @@ interface IRequest {
 
 interface Response {
   user: IUserWithoutPassword;
+  token: string;
 }
 
 class SessionUserService {
@@ -29,7 +31,12 @@ class SessionUserService {
       throw new Error('Incorrect email/password combination');
     }
 
-    return { user: deletePassword(user) };
+    const token = sign({}, 'secret', {
+      subject: user.id,
+      expiresIn: '1d',
+    });
+
+    return { user: deletePassword(user), token };
   }
 }
 
