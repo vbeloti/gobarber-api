@@ -108,3 +108,9 @@ dist
 .vscode-test
 
 ormconfig.json
+
+temp/
+
+
+tmp/*
+!tmp/.gitkeep

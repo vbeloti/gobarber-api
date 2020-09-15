@@ -4,6 +4,7 @@ import { sign } from 'jsonwebtoken';
 
 import User from '../models/User';
 import deletePassword, { IUserWithoutPassword } from './utils/deletePassword';
+import auth from '../config/auth';
 
 interface IRequest {
   email: string;
@@ -31,9 +32,11 @@ class SessionUserService {
       throw new Error('Incorrect email/password combination');
     }
 
-    const token = sign({}, 'secret', {
+    const { secret, expiresIn } = auth.jwt;
+
+    const token = sign({}, secret, {
       subject: user.id,
-      expiresIn: '1d',
+      expiresIn,
     });
 
     return { user: deletePassword(user), token };
