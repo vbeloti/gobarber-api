@@ -1,4 +1,4 @@
-import User from '../../modules/users/entities/User';
+import User from '../../modules/users/infra/typeorm/entities/User';
 
 export interface IUserWithoutPassword {
   id: string;
