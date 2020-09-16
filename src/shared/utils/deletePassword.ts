@@ -1,4 +1,4 @@
-import User from '../../models/User';
+import User from '../../modules/users/entities/User';
 
 export interface IUserWithoutPassword {
   id: string;
