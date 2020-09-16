@@ -31,7 +31,8 @@ usersRouter.patch(
     const updateUserAvatar = new UpdateUserAvatarService();
 
     const user = await updateUserAvatar.execute({
-      user_id: res.locals.user,
+      // user_id: res.locals.user,
+      user_id: req.user.id,
       avatarFilename: req.file.filename,
     });
 

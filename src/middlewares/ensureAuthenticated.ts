@@ -30,9 +30,13 @@ export default function ensureAuthenticated(
 
     const { sub } = decoded as ITokenPayload;
 
-    res.locals.user = {
+    req.user = {
       id: sub,
     };
+
+    // res.locals.user = {
+    //   id: sub,
+    // };
 
     return next();
   } catch {
