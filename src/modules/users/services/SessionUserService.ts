@@ -6,6 +6,7 @@ import deletePassword, {
   IUserWithoutPassword,
 } from '@shared/utils/deletePassword';
 import auth from '@config/auth';
+import { inject, injectable } from 'tsyringe';
 import IUsersRepository from '../repositories/IUsersRepository';
 
 interface IRequest {
@@ -18,8 +19,12 @@ interface IResponse {
   token: string;
 }
 
+@injectable()
 class SessionUserService {
-  constructor(private usersRepository: IUsersRepository) {}
+  constructor(
+    @inject('UsersRepository')
+    private usersRepository: IUsersRepository,
+  ) {}
 
   public async execute({ email, password }: IRequest): Promise<IResponse> {
     const user = await this.usersRepository.findByEmail(email);
