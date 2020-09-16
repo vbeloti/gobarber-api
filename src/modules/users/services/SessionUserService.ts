@@ -2,10 +2,12 @@ import { getRepository } from 'typeorm';
 import { compare } from 'bcryptjs';
 import { sign } from 'jsonwebtoken';
 
-import User from '../../models/User';
-import deletePassword, { IUserWithoutPassword } from './utils/deletePassword';
-import auth from '../config/auth';
-import AppError from '../errors/AppError';
+import AppError from '@shared/errors/AppError';
+import deletePassword, {
+  IUserWithoutPassword,
+} from '@shared/utils/deletePassword';
+import auth from '@config/auth';
+import User from '../infra/typeorm/entities/User';
 
 interface IRequest {
   email: string;
