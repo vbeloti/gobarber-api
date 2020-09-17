@@ -1,4 +1,5 @@
 import IMailProvider from '@shared/container/providers/MailProvider/models/IMailProvider';
+import AppError from '@shared/errors/AppError';
 // import AppError from '@shared/errors/AppError';
 
 // import deletePassword, {
@@ -23,6 +24,12 @@ class SendForgotPassowrdEmailService {
   ) {}
 
   public async execute({ email }: IRequest): Promise<void> {
+    const checkUserExists = await this.usersRepository.findByEmail(email);
+
+    if (!checkUserExists) {
+      throw new AppError('User does not exist');
+    }
+
     this.maiilProvider.sendMail(email, 'Pedido de recuperação de senha');
   }
 }
