@@ -11,6 +11,8 @@
 * [Users]: `PATCH /users/avatar` -- Update User Avatar
 * [Appointments]: `POST /appointments` -- Create One Appointment
 * [Appointments]: `GET /appointments` -- List All Appointments
+* [Profile]: `PUT /profile` -- Update profile
+* [Profile]: `GET /profile` -- Show profile
 
 # Token Generator required Email and Password
 
