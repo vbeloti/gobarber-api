@@ -13,6 +13,7 @@
 * [Appointments]: `GET /appointments` -- List All Appointments
 * [Profile]: `PUT /profile` -- Update profile
 * [Profile]: `GET /profile` -- Show profile
+* [Profile]: `GET /providers` -- List all providers
 
 # Token Generator required Email and Password
 
