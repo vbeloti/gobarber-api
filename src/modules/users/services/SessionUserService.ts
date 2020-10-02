@@ -1,9 +1,7 @@
 import { sign } from 'jsonwebtoken';
 
 import AppError from '@shared/errors/AppError';
-import deletePassword, {
-  IUserWithoutPassword,
-} from '@shared/utils/deletePassword';
+import { IUserWithoutPassword } from '@shared/utils/deletePassword';
 import auth from '@config/auth';
 import { inject, injectable } from 'tsyringe';
 import IUsersRepository from '../repositories/IUsersRepository';
@@ -52,7 +50,7 @@ class SessionUserService {
       expiresIn,
     });
 
-    return { user: deletePassword(user), token };
+    return { user, token };
   }
 }
 
